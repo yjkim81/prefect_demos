@@ -1,9 +1,9 @@
-name: Lint and Type Check
+name: Lint and Type Check and Test
 
 on: [push, pull_request]
 
 jobs:
-  lint:
+  lint_test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,3 +29,6 @@ jobs:
 
       - name: Run mypy
         run: mypy --ignore-missing-imports .
+
+      - name: Run tests
+        run: pytest

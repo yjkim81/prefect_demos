@@ -5,3 +5,8 @@ sagemaker
 pandas
 boto3
 xgboost
+pytest
+black
+flake8
+mypy
+isort
