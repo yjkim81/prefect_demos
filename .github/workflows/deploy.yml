@@ -34,6 +34,12 @@ jobs:
           PROJECT_NAME=$(basename $GITHUB_REPOSITORY)  # 예: your_org/your_project → your_project
 
           ssh $DEPLOY_HOST << EOF
+            set -ex
+            echo "DEPLOY_DIR: \$DEPLOY_DIR"
+            mkdir -p "\$DEPLOY_DIR" || echo "mkdir failed"
+            ls -ld "\$DEPLOY_DIR"    
+
+
             set -e
 
             mkdir -p \$DEPLOY_DIR
