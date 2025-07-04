@@ -22,9 +22,9 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
         run: |
-          echo "🔍 DEPLOY_KEY 내용 시작 (길이: ${#DEPLOY_KEY})"          
-          echo "🔍 DEPLOY_HOST ${#DEPLOY_HOST})"
-          echo "🔍 DEPLOY_DIR ${#DEPLOY_DIR})"
+          echo "DEPLOY_KEY 내용 시작 (길이: ${#DEPLOY_KEY})"          
+          echo "DEPLOY_HOST ${#DEPLOY_HOST})"
+          echo "DEPLOY_DIR ${#DEPLOY_DIR})"
 
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/github_deploy_key
@@ -34,12 +34,7 @@ jobs:
           PROJECT_NAME=$(basename $GITHUB_REPOSITORY)  # 예: your_org/your_project → your_project
 
           ssh $DEPLOY_HOST << EOF
-            set -ex
-            echo "DEPLOY_DIR: \$DEPLOY_DIR"
-            mkdir -p "\$DEPLOY_DIR" || echo "mkdir failed"
-            ls -ld "\$DEPLOY_DIR"    
-
-
+            
             set -e
 
             mkdir -p \$DEPLOY_DIR
