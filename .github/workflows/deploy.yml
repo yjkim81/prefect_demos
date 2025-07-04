@@ -23,8 +23,8 @@ jobs:
           DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
         run: |
           echo "🔐 DEPLOY_KEY length: ${#DEPLOY_KEY}"
-          echo "🌐 DEPLOY_HOST: $DEPLOY_HOST"
-          echo "📁 DEPLOY_DIR: $DEPLOY_DIR"
+          echo "🌐 DEPLOY_HOST length: ${#DEPLOY_HOST}"
+          echo "📁 DEPLOY_DIR length: ${#DEPLOY_DIR}"
 
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/github_deploy_key
