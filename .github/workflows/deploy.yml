@@ -35,16 +35,16 @@ jobs:
           ssh -i ~/.ssh/github_deploy_key -o StrictHostKeyChecking=no $DEPLOY_HOST << EOF
               set -ex
 
-              echo "✅ DEPLOY_DIR: \$DEPLOY_DIR"
-              mkdir -p \$DEPLOY_DIR
-              cd \$DEPLOY_DIR
+              echo "✅ DEPLOY_DIR: $DEPLOY_DIR"
+              mkdir -p $DEPLOY_DIR
+              cd $DEPLOY_DIR
 
-              if [ ! -d "\$PROJECT_NAME" ]; then
+              if [ ! -d "$PROJECT_NAME" ]; then
               echo "📦 프로젝트 디렉토리가 없으므로 git clone 실행"
               git clone https://github.com/${GITHUB_REPOSITORY}.git
               fi
 
-              cd \$PROJECT_NAME
+              cd $PROJECT_NAME
 
               echo "🔄 git pull 실행"
               git pull origin main
