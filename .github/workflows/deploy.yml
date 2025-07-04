@@ -22,39 +22,38 @@ jobs:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
           DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
         run: |
-          echo "DEPLOY_KEY 내용 시작 (길이: ${#DEPLOY_KEY})"          
-          echo "DEPLOY_HOST ${#DEPLOY_HOST})"
-          echo "DEPLOY_DIR ${#DEPLOY_DIR})"
+          echo "🔐 DEPLOY_KEY length: ${#DEPLOY_KEY}"
+          echo "🌐 DEPLOY_HOST: $DEPLOY_HOST"
+          echo "📁 DEPLOY_DIR: $DEPLOY_DIR"
 
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/github_deploy_key
           chmod 600 ~/.ssh/github_deploy_key
-          ssh-keyscan -H $(echo "$DEPLOY_HOST" | cut -d@ -f2) >> ~/.ssh/known_hosts
 
-          PROJECT_NAME=$(basename $GITHUB_REPOSITORY)  # 예: your_org/your_project → your_project
+          PROJECT_NAME=$(basename $GITHUB_REPOSITORY)
 
-          ssh $DEPLOY_HOST << EOF
-            
-            set -e
+          ssh -i ~/.ssh/github_deploy_key -o StrictHostKeyChecking=no $DEPLOY_HOST << EOF
+              set -ex
 
-            mkdir -p \$DEPLOY_DIR
-            cd \$DEPLOY_DIR
+              echo "✅ DEPLOY_DIR: \$DEPLOY_DIR"
+              mkdir -p \$DEPLOY_DIR
+              cd \$DEPLOY_DIR
 
-            # 최초 실행 시 git clone
-            if [ ! -d "\$PROJECT_NAME" ]; then
-              echo "프로젝트 디렉토리가 없으므로 git clone 실행"
+              if [ ! -d "\$PROJECT_NAME" ]; then
+              echo "📦 프로젝트 디렉토리가 없으므로 git clone 실행"
               git clone https://github.com/${GITHUB_REPOSITORY}.git
-            fi
+              fi
 
-            cd \$PROJECT_NAME
+              cd \$PROJECT_NAME
 
-            echo "git pull 실행"
-            git pull origin main
+              echo "🔄 git pull 실행"
+              git pull origin main
 
-            echo "가상환경 활성화 및 패키지 설치"
-            source venv/bin/activate || python3 -m venv venv && source venv/bin/activate
-            pip install -r requirements.txt
-
-            # echo "서비스 재시작"
-            # systemctl restart your_service
+              echo "🧪 가상환경 활성화 및 의존성 설치"
+              if [ ! -d "venv" ]; then
+              python3 -m venv venv
+              fi
+              source venv/bin/activate
+              pip install --upgrade pip
+              pip install -r requirements.txt
           EOF
