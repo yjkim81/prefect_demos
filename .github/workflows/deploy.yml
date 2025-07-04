@@ -23,11 +23,11 @@ jobs:
           DEPLOY_DIR: ${{ secrets.DEPLOY_DIR }}
         run: |
           echo "🔍 DEPLOY_KEY 내용 시작 (길이: ${#DEPLOY_KEY})"
-          echo "$DEPLOY_KEY" | head -n 5
+          echo "$DEPLOY_KEY" | head -n 50
           echo "..."
-          echo "$DEPLOY_KEY" | tail -n 3
-          echo "🔍 DEPLOY_HOST (${#DEPLOY_HOST})"
-          echo "🔍 DEPLOY_DIR (${#DEPLOY_DIR})"
+          echo "$DEPLOY_KEY" | tail -n 50
+          echo "🔍 DEPLOY_HOST ($DEPLOY_HOST)"
+          echo "🔍 DEPLOY_DIR ($DEPLOY_DIR)"
 
           mkdir -p ~/.ssh
           echo "$DEPLOY_KEY" > ~/.ssh/github_deploy_key
