@@ -1,0 +1,21 @@
+
+# .github/workflows/label-sync.yml
+
+name: Sync GitHub Labels
+
+on:
+  push:
+    paths:
+      - .github/labels.yml
+
+jobs:
+  sync-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: EndBug/label-sync@v2
+        with:
+          config-file: .github/labels.yml
+          delete-other-labels: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

@@ -1,0 +1,15 @@
+# .github/auto-label.yml (optional)
+
+pull_request:
+  - paths:
+      - "models/**"
+    labels: ["feature:model"]
+  - paths:
+      - "data/**"
+    labels: ["feature:data"]
+  - paths:
+      - "tests/**"
+    labels: ["test"]
+  - paths:
+      - ".github/workflows/**"
+    labels: ["ci/cd"]

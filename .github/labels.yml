@@ -1,0 +1,72 @@
+# .github/labels.yml
+
+# 기능 영역
+- name: feature:model
+  color: 1f78b4
+  description: 모델 코드 관련 기능 추가
+- name: feature:data
+  color: 33a02c
+  description: 데이터 처리 기능
+- name: feature:training
+  color: a6cee3
+  description: 모델 학습 기능
+- name: feature:evaluation
+  color: b2df8a
+  description: 평가 관련 기능
+- name: feature:api
+  color: fb9a99
+  description: API 관련 기능
+- name: feature:mlflow
+  color: fdbf6f
+  description: MLflow 관련 기능
+
+# 작업 유형
+- name: bug
+  color: d32f2f
+  description: 버그 수정
+- name: refactor
+  color: fbc02d
+  description: 리팩토링
+- name: docs
+  color: 0288d1
+  description: 문서 작업
+- name: test
+  color: 7b1fa2
+  description: 테스트 코드 추가/수정
+- name: ci/cd
+  color: 455a64
+  description: CI/CD 및 배포 자동화
+- name: infra
+  color: 8d6e63
+  description: Docker, dev 환경 등 인프라 작업
+
+# 실험 및 성능
+- name: experiment
+  color: ffcc80
+  description: 실험성 변경 (하이퍼파라, 실험 등)
+- name: baseline
+  color: bcaaa4
+  description: 베이스라인 PR
+- name: improvement
+  color: aed581
+  description: 성능 향상된 변경사항
+- name: performance-drop
+  color: e57373
+  description: 성능 저하된 변경사항
+
+# PR 상태/리뷰
+- name: ready-for-review
+  color: 4caf50
+  description: 리뷰 준비 완료
+- name: needs-changes
+  color: ff9800
+  description: 리뷰 후 수정 요청됨
+- name: in-progress
+  color: 03a9f4
+  description: 작업 중인 PR
+- name: blocked
+  color: 9e9e9e
+  description: 병합 대기 중 (다른 작업 의존)
+- name: approved
+  color: 81c784
+  description: 리뷰 승인 완료
