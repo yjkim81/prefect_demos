@@ -5,6 +5,10 @@ on:
     paths:
       - .github/labels.yml
 
+permissions:
+  contents: read
+  issues: write # ✅ 필수! 라벨 작성 권한
+
 jobs:
   sync-labels:
     runs-on: ubuntu-latest
