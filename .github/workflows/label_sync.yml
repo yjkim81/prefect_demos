@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - .github/labels.yml
+  workflow_dispatch: # ✅ 수동 실행 지원
 
 permissions:
   contents: read
